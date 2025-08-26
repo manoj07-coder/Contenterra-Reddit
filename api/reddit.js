@@ -5,8 +5,7 @@ export default async function handler(req, res) {
         encodeURIComponent("https://www.reddit.com/r/reactjs.json?raw_json=1"),
       {
         headers: {
-          "User-Agent":
-            "MyRedditApp/1.0 (https://contenterra-reddit.vercel.app/; contact: manojgowdacs35@gmail.com) ",
+          "User-Agent": "ContenterraRedditFeed/1.0 (by u/MostSky9263)",
           Accept: "application/json", // required!
         },
       }
