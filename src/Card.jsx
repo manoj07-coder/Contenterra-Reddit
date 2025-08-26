@@ -30,8 +30,8 @@ const Card = ({ post }) => {
         <p className="mb-2 font-semibold">🔥 Score: {score}</p>
         {safeHtml ? (
           <div
-            className={`prose prose-invert text-sm max-w-none mb-2 ${
-              expanded ? "overflow-y-auto pr-2 card-scroll" : "line-clamp-3"
+            className={`prose prose-invert text-sm max-w-none mb-2 card-scroll ${
+              expanded ? "overflow-y-auto" : "line-clamp-3"
             }`}
             style={{ flexGrow: 1 }}
             dangerouslySetInnerHTML={{ __html: safeHtml }}
@@ -39,22 +39,24 @@ const Card = ({ post }) => {
         ) : (
           <p className="text-slate-300 mt-2 italic">No description</p>
         )}
-        {safeHtml && (
-          <button
-            className="text-yellow-300 font-bold hover:text-yellow-100 transition-colors mb-4"
-            onClick={() => setExpanded(!expanded)}
+        <div className="mt-2">
+          {safeHtml && (
+            <button
+              className="text-yellow-300 font-bold hover:text-yellow-100 transition-colors mb-4"
+              onClick={() => setExpanded(!expanded)}
+            >
+              {expanded ? "⬆️ Show Less" : " ⬇️ Show More"}
+            </button>
+          )}
+          <a
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-auto block  px-4 py-2 bg-black/30 hover:bg-black/50 rounded-lg text-center font-semibold"
           >
-            {expanded ? "⬆️ Show Less" : " ⬇️ Show More"}
-          </button>
-        )}
-        <a
-          href={url}
-          target="_blank"
-          rel="noreferrer"
-          className="mt-auto block  px-4 py-2 bg-black/30 hover:bg-black/50 rounded-lg text-center font-semibold"
-        >
-          🌐 Visit Post
-        </a>
+            🌐 Visit Post
+          </a>
+        </div>
       </div>
     </div>
   );
