@@ -20,7 +20,7 @@ const Card = ({ post }) => {
   return (
     <div
       className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white rounded-2xl shadow-lg p-6
-     w-full transform transition-transform duration-300 hover:scale-105  hover:shadow-2xl relative overflow-hidden flex flex-col min-h-[280px]"
+     w-full transform transition-transform duration-300 hover:scale-105  hover:shadow-2xl relative overflow-hidden flex flex-col "
     >
       <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity rounded-2xl"></div>
       <div className="relative z-10 flex flex-col flex-1">
@@ -38,24 +38,23 @@ const Card = ({ post }) => {
         ) : (
           <p className="text-slate-300 mt-2 italic">No description</p>
         )}
-        <div className="mt-2">
-          {safeHtml && (
-            <button
-              className="text-yellow-300 font-bold hover:text-yellow-100 transition-colors mb-4"
-              onClick={() => setExpanded(!expanded)}
-            >
-              {expanded ? "⬆️ Show Less" : " ⬇️ Show More"}
-            </button>
-          )}
-          <a
-            href={url}
-            target="_blank"
-            rel="noreferrer"
-            className="mt-auto block  px-4 py-2 bg-black/30 hover:bg-black/50 rounded-lg text-center font-semibold"
+
+        {safeHtml && (
+          <button
+            className="text-yellow-300 font-bold hover:text-yellow-100 transition-colors mb-4"
+            onClick={() => setExpanded(!expanded)}
           >
-            🌐 Visit Post
-          </a>
-        </div>
+            {expanded ? "⬆️ Show Less" : " ⬇️ Show More"}
+          </button>
+        )}
+        <a
+          href={url}
+          target="_blank"
+          rel="noreferrer"
+          className="mt-auto block  px-4 py-2 bg-black/30 hover:bg-black/50 rounded-lg text-center font-semibold"
+        >
+          🌐 Visit Post
+        </a>
       </div>
     </div>
   );
