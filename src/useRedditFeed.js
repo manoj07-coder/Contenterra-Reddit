@@ -11,7 +11,14 @@ const useRedditFeed = () => {
         const data = await fetch("/api/reddit.js");
         const json = await data.json();
 
-        setItems(json.data.children || []);
+        const children = json?.data.children;
+        if (Array.isArray(children)) {
+          setItems(children);
+        } else {
+          setItems([]);
+        }
+
+        // setItems(json.data.children || []);
       } catch (error) {
         console.log("Error fetching data: ", error);
         setError(error.message);
