@@ -1,12 +1,27 @@
+const client_id = "njBjyh7OBbuTPi5teBu8AA";
+const secret = "8RoOIM3PlHf4vcuYZWMgqIlU_9VdAg";
+
 export default async function handler(req, res) {
   try {
+    const tokenRes = await fetch("https://www.reddit.com/api/v1/access_token", {
+      method: "POST",
+      headers: {
+        Authorization:
+          "Basic " + Buffer.from(`${client_id}:${secret}`).toString("base64"),
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "grant_type=client_credentials",
+    });
+
+    const tokenJson = await tokenRes.json();
+    const accessToken = tokenJson.access_token;
+
     const response = await fetch(
-      "https://thingproxy.freeboard.io/fetch" +
-        encodeURIComponent("https://www.reddit.com/r/reactjs.json?raw_json=1"),
+      "https://oauth.reddit.com/r/reactjs/hot?limit=10",
       {
         headers: {
+          Authorization: `Bearer ${accessToken}`,
           "User-Agent": "ContenterraRedditFeed/1.0 (by u/MostSky9263)",
-          Accept: "application/json", // required!
         },
       }
     );
