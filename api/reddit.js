@@ -18,6 +18,11 @@ export default async function handler(req, res) {
         .json({ error: "Failed to fetch reddit data" });
     }
     const data = await response.json();
+    console.log("AllOrigins response:", data);
+    if (!data.contents) {
+      return res.status(500).json({ error: "No contents in proxy response" });
+    }
+
     const redditData = JSON.parse(data.contents);
     return res.status(200).json(redditData);
   } catch (error) {
