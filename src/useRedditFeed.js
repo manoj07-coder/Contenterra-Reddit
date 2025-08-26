@@ -8,12 +8,7 @@ const useRedditFeed = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetch(
-          "https://api.allorigins.win/get?url=" +
-            encodeURIComponent(
-              "https://www.reddit.com/r/reactjs.json?raw_json=1"
-            )
-        );
+        const data = await fetch("/api/reddit.js");
         const json = await data.json();
 
         const children = json?.data.children;
