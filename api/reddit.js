@@ -1,7 +1,13 @@
 export default async function handler(req, res) {
   try {
     const response = await fetch(
-      "https://www.reddit.com/r/reactjs.json?raw_json=1"
+      "https://www.reddit.com/r/reactjs.json?raw_json=1",
+      {
+        headers: {
+          "User-Agent":
+            "MyRedditApp/1.0 (https://contenterra-reddit.vercel.app/)", // required!
+        },
+      }
     );
     if (!response.ok) {
       return res

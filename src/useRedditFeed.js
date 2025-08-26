@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 const useRedditFeed = () => {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -12,12 +14,15 @@ const useRedditFeed = () => {
         setItems(json.data.children || []);
       } catch (error) {
         console.log("Error fetching data: ", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchData();
   }, []);
 
-  return { items };
+  return { items, loading, error };
 };
 
 export default useRedditFeed;

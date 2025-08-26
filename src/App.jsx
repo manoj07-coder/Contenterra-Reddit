@@ -3,7 +3,21 @@ import Card from "./Card";
 import useRedditFeed from "./useRedditFeed";
 
 const App = () => {
-  const { items } = useRedditFeed();
+  const { items, error, loading } = useRedditFeed();
+
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen text-xl">
+        ⏳ Loading reddit posts...
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="flex justify-center items-center min-h-screen  text-xl text-red-500">
+        🚫 Failed to load posts: {error}
+      </div>
+    );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-purple-900 to-black text-white p-6">
