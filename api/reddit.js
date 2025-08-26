@@ -5,7 +5,8 @@ export default async function handler(req, res) {
       {
         headers: {
           "User-Agent":
-            "MyRedditApp/1.0 (https://contenterra-reddit.vercel.app/)", // required!
+            "MyRedditApp/1.0 (https://contenterra-reddit.vercel.app/; contact: manojgowdacs35@gmail.com) ",
+          Accept: "application/json", // required!
         },
       }
     );
