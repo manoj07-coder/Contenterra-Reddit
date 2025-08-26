@@ -6,7 +6,9 @@ const useRedditFeed = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const data = await fetch("/reddit/r/reactjs.json?raw_json=1");
+        const data = await fetch(
+          "https://www.reddit.com/r/reactjs.json?raw_json=1"
+        );
         const json = await data.json();
 
         setItems(json.data.children || []);
