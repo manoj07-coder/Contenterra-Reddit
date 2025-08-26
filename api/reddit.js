@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     const accessToken = tokenJson.access_token;
 
     const response = await fetch(
-      "https://oauth.reddit.com/r/reactjs/hot?limit=10",
+      "https://oauth.reddit.com/r/reactjs/hot?limit=24",
       {
         headers: {
           Authorization: `Bearer ${accessToken}`,
