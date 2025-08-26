@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   try {
     const response = await fetch(
-      "https://api.allorigins.win/get?url=" +
+      "https://thingproxy.freeboard.io/fetch" +
         encodeURIComponent("https://www.reddit.com/r/reactjs.json?raw_json=1"),
       {
         headers: {
@@ -18,13 +18,7 @@ export default async function handler(req, res) {
         .json({ error: "Failed to fetch reddit data" });
     }
     const data = await response.json();
-    console.log("AllOrigins response:", data);
-    if (!data.contents) {
-      return res.status(500).json({ error: "No contents in proxy response" });
-    }
-
-    const redditData = JSON.parse(data.contents);
-    return res.status(200).json(redditData);
+    return res.status(200).json(data);
   } catch (error) {
     console.log("Reddit API error: ", error);
     return res.status(500).json({ error: "Internal server error" });
