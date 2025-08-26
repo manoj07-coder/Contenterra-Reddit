@@ -31,7 +31,7 @@ const App = () => {
         <h1 className="text-4xl font-extrabold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to bg-yellow-300">
           🚀 Contenterra Reddit feed
         </h1>
-        <div className="columns-1 sm:columns-2 lg:columns-3 xl:columns-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <AnimatePresence>
             {items.slice(0, visibleCount).map((item) => (
               <motion.div
@@ -41,7 +41,7 @@ const App = () => {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
               >
-                <Card post={item} />
+                <Card post={item} fixedHeight />
               </motion.div>
             ))}
           </AnimatePresence>

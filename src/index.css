@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.card-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.card-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.card-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #ec4899, #f97316);
+  border-radius: 8px;
+}
+
+.card-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #f97316, #ec4899);
+}
