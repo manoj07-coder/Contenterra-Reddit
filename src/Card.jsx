@@ -20,7 +20,7 @@ const Card = ({ post }) => {
   return (
     <div
       className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white rounded-2xl shadow-lg p-6
-     w-full transform transition-transform duration-300 hover:scale-105  hover:shadow-2xl relative overflow-hidden flex flex-col"
+     w-full transform transition-transform duration-300 hover:scale-105  hover:shadow-2xl relative overflow-hidden flex flex-col min-h-[360px]"
     >
       <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity rounded-2xl"></div>
       <div className="relative z-10 flex flex-col flex-1">
