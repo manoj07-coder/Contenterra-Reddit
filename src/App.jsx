@@ -31,7 +31,7 @@ const App = () => {
         <h1 className="text-4xl font-extrabold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to bg-yellow-300">
           🚀 Contenterra Reddit feed
         </h1>
-        <div className="grid gap-4 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 auto-rows-fr">
           <AnimatePresence>
             {items.slice(0, visibleCount).map((item) => (
               <motion.div
