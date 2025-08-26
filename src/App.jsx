@@ -40,7 +40,6 @@ const App = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.4, ease: "easeOut" }}
-                className="mb-6 break-inside-avoid"
               >
                 <Card post={item} />
               </motion.div>
