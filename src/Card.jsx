@@ -1,9 +1,10 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import he from "he";
 import DOMPurify from "dompurify";
 
 const Card = ({ post }) => {
   const { title, score } = post?.data || undefined;
+  const [expanded, setExpanded] = useState(false);
 
   const url =
     post.data.url_overridden_by_dest ??
@@ -17,37 +18,44 @@ const Card = ({ post }) => {
   }, [post.data.selftext_html]);
 
   return (
-    <article className="bg-white/5 rounded-xl p-4 border border-white/10 shadow hover:shadow-lg transition  hover:-translate-y-0.5">
-      <a
-        href={`https://reddit.com${post.data.permalink}`}
-        target="_blank"
-        rel="noreferrer"
-        className="text-lg font-semibold line-clamp-2 hover:text-sky-300"
-      >
-        {title}
-      </a>
-      {safeHtml ? (
-        <div
-          className="prose prose-invert prose-sm max-w-none mt-2"
-          dangerouslySetInnerHTML={{ __html: safeHtml }}
-        />
-      ) : (
-        <p className="text-slate-300 mt-2 italic">No description</p>
-      )}
-      <div className="mt-3 flex items-center justify-between text-xs text-slate-300">
+    <div
+      className="bg-gradient-to-r from-purple-500 via-pink-500 to-orange-400 text-white rounded-2xl shadow-lg p-6
+     w-full transform transition-transform duration-300 hover:scale-105  hover:shadow-2xl relative overflow-hidden flex flex-col"
+    >
+      <div className="absolute inset-0 bg-black/20 opacity-0 hover:opacity-100 transition-opacity rounded-2xl"></div>
+      <div className="relative z-10 flex flex-col flex-1">
+        <h2 className="text-xl  font-bold mb-2  flex items-center gap-2">
+          {title}
+        </h2>
+        <p className="mb-2 font-semibold">🔥 Score: {score}</p>
+        {safeHtml ? (
+          <div
+            className={`prose prose-invert text-sm max-w-none mb-2 overflow-hidden ${
+              expanded ? "line-clamp-none" : "line-clamp-3"
+            }`}
+            dangerouslySetInnerHTML={{ __html: safeHtml }}
+          />
+        ) : (
+          <p className="text-slate-300 mt-2 italic">No description</p>
+        )}
+        {safeHtml && (
+          <button
+            className="text-yellow-300 font-bold hover:text-yellow-100 transition-colors mb-4"
+            onClick={() => setExpanded(!expanded)}
+          >
+            {expanded ? "⬆️ Show Less" : " ⬇️ Show More"}
+          </button>
+        )}
         <a
           href={url}
           target="_blank"
           rel="noreferrer"
-          className="underline underline-offset-2 hover:text-sky-300"
+          className="mt-auto block  px-4 py-2 bg-black/30 hover:bg-black/50 rounded-lg text-center font-semibold"
         >
-          open link
+          🌐 Visit Post
         </a>
-        <span>
-          ⭐ <b>{score}</b>
-        </span>
       </div>
-    </article>
+    </div>
   );
 };
 
